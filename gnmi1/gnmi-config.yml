@@ -1,0 +1,6 @@
+server:
+  address: ":9339"
+  tls-cert: /app/certs/router1.crt
+  tls-key: /app/certs/router1.key
+  tls-ca: /app/certs/ca.crt
+  skip-verify: false

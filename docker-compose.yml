@@ -1,0 +1,46 @@
+services:
+  r1:
+    image: frrouting/frr:latest
+    platform: linux/amd64
+    container_name: r1
+    privileged: true
+    tty: true
+    volumes:
+      - ./frr1/config:/etc/frr
+    networks:
+      net-lab:
+        ipv4_address: 10.10.0.3
+    command: >
+      bash -c "chown frr:frr /etc/frr/*; /usr/lib/frr/frrinit.sh start; tail -f /dev/null"
+
+  r2:
+    image: frrouting/frr:latest
+    platform: linux/amd64
+    container_name: r2
+    privileged: true
+    tty: true
+    volumes:
+      - ./frr2/config:/etc/frr
+    networks:
+      net-lab:
+        ipv4_address: 10.10.0.4
+    command: >
+      bash -c "chown frr:frr /etc/frr/*; /usr/lib/frr/frrinit.sh start; tail -f /dev/null"
+
+  gnmi-r1:
+    image: ghcr.io/openconfig/gnmic:latest
+    container_name: gnmi-r1
+    platform: linux/amd64
+    volumes:
+      - ./gnmi1/certs:/app/certs
+      - ./gnmi1/gnmi-config.yml:/app/config.yml
+    command: ["--config", "/app/gnmic-config.yml"]
+    ports:
+      - "9339:9339"
+
+networks:
+  net-lab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/24
