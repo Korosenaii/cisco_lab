@@ -14,7 +14,46 @@ This lab simulates a virtual network environment to experiment with configuratio
 
 ## 🖼️ Architecture Overview
 
-(NOT DONE YET)
+<pre><code>
+📁 Project Structure
+
+.
+├── ca/                         # Certificate Authority (CA)
+│   ├── ca.crt                  # Root certificate
+│   ├── ca.key                  # Private key
+│   └── ca.srl                  # Serial number file
+├── certs/                      # Signed certificates per router
+│   ├── router1/
+│   │   ├── router1.crt
+│   │   ├── router1.csr
+│   │   └── router1.key
+│   └── router2/
+│       ├── router2.crt
+│       ├── router2.csr
+│       └── router2.key
+├── client-go/                  # Go client for gNMI/gNOI
+├── docker-compose.yml          # Docker orchestration file
+├── frr1/                       # FRRouting container config (router 1)
+│   └── config/
+│       ├── daemons
+│       └── frr.conf
+├── frr2/                       # FRRouting container config (router 2)
+│   └── config/
+│       ├── daemons
+│       └── frr.conf
+├── gnmi1/                      # gNMI server configuration
+│   ├── certs/
+│   │   ├── ca.crt
+│   │   ├── router1.crt
+│   │   └── router1.key
+│   ├── config/
+│   │   └── gnmic-config.yml
+│   └── gnmi-config.yml
+├── kubernetes/                 # (Optional) Kubernetes manifests
+├── README.md                   # Project documentation
+└── tests/                      # PyTest validation scripts
+</code></pre>
+
 
 ## 🛠️ Tech Stack
 
