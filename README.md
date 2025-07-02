@@ -49,7 +49,7 @@ This lab simulates a virtual network environment to experiment with configuratio
 │   ├── config/
 │   │   └── gnmic-config.yml
 │   └── gnmi-config.yml
-├── kubernetes/                 # (Optional) Kubernetes manifests
+├── kubernetes/                 # Kubernetes manifests
 ├── README.md                   # Project documentation
 └── tests/                      # PyTest validation scripts
 </code></pre>
